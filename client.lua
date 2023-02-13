@@ -100,7 +100,7 @@ RegisterCommand("carry",function(source,args)
 					ScarCarry.Notify("client",_,ScarCarry.Settings.Messages.NoPersonInRange);
 				end
 			else
-				ScarCarry.Notify("client",_,(ScarCarry.Settings.Messages.Cooldown:format( coolDownTimeRemaining)));
+				ScarCarry.Notify("client",_,(ScarCarry.Settings.Messages.Cooldown:format(coolDownTimeRemaining)));
 			end
 		else
 			ScarCarry.Notify("client",_,ScarCarry.Settings.Messages.NoPersonInRange);
