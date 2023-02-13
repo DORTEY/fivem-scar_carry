@@ -88,8 +88,6 @@ RegisterCommand("carry",function(source,args)
 		local closestPlayer=GetClosestPlayer(ScarCarry.Settings.Distance);
 		if(closestPlayer)then
 			if(not(ScarCarryCooldown))then
-				StartCarryCooldown();
-				
 				local TargetPED=GetPlayerServerId(closestPlayer);
 				if(TargetPED~=-1)then
 					ScarCarryProgress=true;
@@ -100,6 +98,8 @@ RegisterCommand("carry",function(source,args)
 				else
 					ScarCarry.Notify("client",_,ScarCarry.Settings.Messages.NoPersonInRange);
 				end
+				
+				StartCarryCooldown();
 			else
 				ScarCarry.Notify("client",_,(ScarCarry.Settings.Messages.Cooldown:format(coolDownTimeRemaining)));
 			end
