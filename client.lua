@@ -133,3 +133,10 @@ function StartCarryCooldown()
 	Wait(ScarCarry.Settings.Cooldown*1000);
 	ScarCarryCooldown=false;
 end
+
+
+function Notify(text)
+    BeginTextCommandThefeedPost("STRING");
+    AddTextComponentSubstringPlayerName(text);
+    EndTextCommandThefeedPostTicker(false,false);
+end

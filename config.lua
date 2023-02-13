@@ -10,7 +10,8 @@ ScarCarry={};
 ScarCarry.Notify=function(type,xPlayer,message)  --// SCAR Notify   https://github.com/meuntouchable/fivem-scar_notify
 	if(type=="client")then --client side
 		--ESX.ShowNotification(message);   ESX example
-		exports["scar_notify"]:ScarNotify(message,"info",true,5000);
+		--exports["scar_notify"]:ScarNotify(message,"info",true,5000);    SCAR Notify
+		Notify(message);
 	end
 end
 
