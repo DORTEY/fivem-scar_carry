@@ -95,16 +95,16 @@ RegisterCommand("carry",function(source,args)
 					TriggerServerEvent("ScarCarry->Sync->S",TargetPED);
 					ensureAnimDict(ScarCarry.Settings.Animations.Carrying.Anim);
 					ScarCarryType="carrying";
+					
+					StartCarryCooldown();
 				else
-					ScarCarry.Notify("client",_,ScarCarry.Settings.Messages.NoPersonInRange);
+					exports.freeroamR_notify:Error(ScarCarry.Settings.Messages.NoPersonInRange);
 				end
-				
-				StartCarryCooldown();
 			else
-				ScarCarry.Notify("client",_,(ScarCarry.Settings.Messages.Cooldown:format(coolDownTimeRemaining)));
+				exports.freeroamR_notify:Error((ScarCarry.Settings.Messages.Cooldown:format(coolDownTimeRemaining)));
 			end
 		else
-			ScarCarry.Notify("client",_,ScarCarry.Settings.Messages.NoPersonInRange);
+			exports.freeroamR_notify:Error(ScarCarry.Settings.Messages.NoPersonInRange);
 		end
 	else
 		ScarCarryProgress=false;
