@@ -98,13 +98,13 @@ RegisterCommand("carry",function(source,args)
 					
 					StartCarryCooldown();
 				else
-					exports.freeroamR_notify:Error(ScarCarry.Settings.Messages.NoPersonInRange);
+					ScarCarry.Notify("client",_,ScarCarry.Settings.Messages.NoPersonInRange);
 				end
 			else
-				exports.freeroamR_notify:Error((ScarCarry.Settings.Messages.Cooldown:format(coolDownTimeRemaining)));
+				ScarCarry.Notify("client",_,(ScarCarry.Settings.Messages.Cooldown:format(coolDownTimeRemaining)));
 			end
 		else
-			exports.freeroamR_notify:Error(ScarCarry.Settings.Messages.NoPersonInRange);
+			ScarCarry.Notify("client",_,ScarCarry.Settings.Messages.NoPersonInRange);
 		end
 	else
 		ScarCarryProgress=false;
