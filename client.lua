@@ -85,33 +85,35 @@ end)
 
 RegisterCommand("carry",function(source,args)
 	if(not ScarCarryProgress)then
-		local closestPlayer=GetClosestPlayer(ScarCarry.Settings.Distance);
-		if(closestPlayer)then
-			if(not(ScarCarryCooldown))then
-				local TargetPED=GetPlayerServerId(closestPlayer);
-				if(TargetPED~=-1)then
-					ScarCarryProgress=true;
-					ScarTargetPED=TargetPED;
-					TriggerServerEvent("ScarCarry->Sync->S",TargetPED);
-					ensureAnimDict(ScarCarry.Settings.Animations.Carrying.Anim);
-					ScarCarryType="carrying";
-					
-					StartCarryCooldown();
+		if(not(IsEntityDead(PlayerPedId())))then
+			local closestPlayer=GetClosestPlayer(ScarCarry.Settings.Distance);
+			if(closestPlayer)then
+				if(not(ScarCarryCooldown))then
+					local TargetPED=GetPlayerServerId(closestPlayer);
+					if(TargetPED~=-1)then
+						ScarCarryProgress=true;
+						ScarTargetPED=TargetPED;
+						TriggerServerEvent("ScarCarry->Sync->S",TargetPED);
+						ensureAnimDict(ScarCarry.Settings.Animations.Carrying.Anim);
+						ScarCarryType="carrying";
+						
+						StartCarryCooldown();
+					else
+						ScarCarry.Notify("client",_,ScarCarry.Settings.Messages.NoPersonInRange);
+					end
 				else
-					ScarCarry.Notify("client",_,ScarCarry.Settings.Messages.NoPersonInRange);
+					ScarCarry.Notify("client",_,(ScarCarry.Settings.Messages.Cooldown:format(coolDownTimeRemaining)));
 				end
 			else
-				ScarCarry.Notify("client",_,(ScarCarry.Settings.Messages.Cooldown:format(coolDownTimeRemaining)));
+				ScarCarry.Notify("client",_,ScarCarry.Settings.Messages.NoPersonInRange);
 			end
 		else
-			ScarCarry.Notify("client",_,ScarCarry.Settings.Messages.NoPersonInRange);
+			ScarCarryProgress=false;
+			ClearPedSecondaryTask(PlayerPedId());
+			DetachEntity(PlayerPedId(),true,false);
+			TriggerServerEvent("ScarCarry->Stop->S",ScarTargetPED);
+			ScarTargetPED=0;
 		end
-	else
-		ScarCarryProgress=false;
-		ClearPedSecondaryTask(PlayerPedId());
-		DetachEntity(PlayerPedId(),true,false);
-		TriggerServerEvent("ScarCarry->Stop->S",ScarTargetPED);
-		ScarTargetPED=0;
 	end
 end,false)
 
