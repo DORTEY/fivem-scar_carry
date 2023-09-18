@@ -65,7 +65,7 @@ AddEventHandler("ScarCarry->Stop",function()
 	DetachEntity(PlayerPedId(),true,false);
 end)
 
-Citizen.CreateThread(function()
+CreateThread(function()
 	while true do
 		if(ScarCarryProgress)then
 			if(ScarCarryType=="beingcarried")then
