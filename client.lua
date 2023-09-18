@@ -84,8 +84,8 @@ end)
 
 
 RegisterCommand("carry",function(source,args)
-	if(not ScarCarryProgress)then
-		if(not(IsEntityDead(PlayerPedId())))then
+	if(not(IsEntityDead(PlayerPedId())))then
+		if(not ScarCarryProgress)then
 			local closestPlayer=GetClosestPlayer(ScarCarry.Settings.Distance);
 			if(closestPlayer)then
 				if(not(ScarCarryCooldown))then
